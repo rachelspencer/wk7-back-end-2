@@ -49,7 +49,21 @@ const updateHouse = (req, res) => {
                 return res.status(200).send(houses); 
             }
         }
-        /*const houseIndex = houses.findIndex((house) => house.id === +id);
+
+        /*
+        (req, res) => {
+        let { id } = req.params
+        let { type } = req.body
+        let index = houses.findIndex(elem => +elem.id === +id)
+        const adjustment = {
+            plus: () => houses[index].price += 10000,
+            minus: () => houses[index].price = Math.max(0, houses[index].price - 10000)
+        }
+
+        adjustment[type]();
+        res.status(200).send(houses)
+    }
+        const houseIndex = houses.findIndex((house) => house.id === +id);
         if (houses[i].id === +id) {
             if (type === 'plus') {
                 houses[houseIndex].price += 10000
